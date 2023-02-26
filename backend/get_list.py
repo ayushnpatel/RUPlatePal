@@ -74,18 +74,32 @@ findByIngredients_params = "apiKey=" + spoonacular_api_key + string_ingredient +
 findByIngredients_query = findByIngredients_url  + findByIngredients_params
 
 findByIngredients_response = requests.get(findByIngredients_query)
-
-#tempList = {}
-
+instructionsList = []
+recipeInfoList = []
 for c,v in enumerate(findByIngredients_response.json()):
     recipe_id = findByIngredients_response.json()[c]["id"]
+
     analyzedInstructions_url = f'https://api.spoonacular.com/recipes/{recipe_id}/analyzedInstructions?'
     analyzedInstructions_params = "apiKey=" + spoonacular_api_key
     analyzedInstructions_query = analyzedInstructions_url  + analyzedInstructions_params
 
     analyzedInstructions_response = requests.get(analyzedInstructions_query)
-    with open("steps/steps"+str(c)+".json",'w') as u:
-        json.dump(analyzedInstructions_response.json(), u)
+    instructionsList.append(analyzedInstructions_response.json())
+    
+    getRecipeInformation_url = f'https://api.spoonacular.com/recipes/{recipe_id}/information?'
+    getRecipeInformation_query = getRecipeInformation_url  + analyzedInstructions_params
+    getRecipeInformation_response = requests.get(getRecipeInformation_query)
+    recipeInfoList.append(getRecipeInformation_response.json())
+    
+
+with open("instructionInfo.json",'w') as u:
+    json.dump(instructionsList, u)
+
+with open("recipeInfo.json",'w') as u:
+    json.dump(recipeInfoList, u)   
+
 
 with open("allrecipes.json",'w') as t:
     json.dump(findByIngredients_response.json(), t)
+
+
