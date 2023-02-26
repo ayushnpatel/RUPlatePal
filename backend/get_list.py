@@ -31,8 +31,6 @@ if __name__ == '__main__':
     ws1 = "Class Data"
     data = get_data(ss1, ws1)
     update_dict(data)
-    
-    
     ss2 = "Food Data"
     ws2 = "Sheet1"
     data2 = get_data(ss2, ws2)
@@ -53,18 +51,16 @@ if __name__ == '__main__':
                     break
                 if len(temp.split(" ")) == 1:
                     break
-    print(food_dict)
-    print(listOfFood)
+    #print(food_dict)
+    #print(listOfFood)
 
-
-    
 # Call an API
 #auth = HTTPBasicAuth('x-api-key', 'fd03d916c4ff4d1885e54662d18c7f32')
 spoonacular_api_key = 'fd03d916c4ff4d1885e54662d18c7f32'
 
 url = 'https://api.spoonacular.com/recipes/findByIngredients?'
 
-ingredientList = ["apples","flour","sugar","plums"]
+ingredientList = [k for k in listOfFood]
 
 postString = "&ingredients="
 for count,val in enumerate(ingredientList):
@@ -75,14 +71,13 @@ for count,val in enumerate(ingredientList):
     
     postString = postString+","
 postString = postString[:len(postString)-1]
-amountOfRecipes = 2
+amountOfRecipes = 20
 postString = postString+"&number=" + str(amountOfRecipes)
-query_params = "apiKey=" + spoonacular_api_key + postString
-#"&ingredients=apples,+flour,+sugar&number=2&ignorePantry=False"
-
+query_params = "apiKey=" + spoonacular_api_key + postString + "&ignorePantry=False"
 query = url  + query_params
 
 spoonacular_response = requests.get(query)
 
-print(spoonacular_response.json())
+with open("temp.json",'w') as t:
+    
    #print_dict()
