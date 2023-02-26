@@ -3,7 +3,7 @@
   width: 100%;
   height: 100vh;
   text-align: center;
-  background-color: rgb(255, 236, 236);
+  background-image: linear-gradient(to right, #d1b7e7, #feaaaa);
 }
 
 .logo {
