@@ -71,12 +71,24 @@ for count,val in enumerate(ingredientList):
     
     postString = postString+","
 postString = postString[:len(postString)-1]
-amountOfRecipes = 10
+amountOfRecipes = 1
 postString = postString+"&number=" + str(amountOfRecipes)
 query_params = "apiKey=" + spoonacular_api_key + postString + "&ignorePantry=False"
 query = url  + query_params
 
 spoonacular_response = requests.get(query)
 
+#tempList = {}
+
+for c,v in enumerate(spoonacular_response.json()):
+    id = spoonacular_response.json()[c]["id"]
+
+url2 = 'https://api.spoonacular.com/recipes/324694/analyzedInstructions?'
+
+query_params2 = "apiKey=" + spoonacular_api_key + str(id)
+query2= url  + query_params2
+
+spoonacular_response2 = requests.get(query2)
+
 with open("temp.json",'w') as t:
-    json.dump(spoonacular_response.json(), t)
+    json.dump(spoonacular_response2.json(), t)
