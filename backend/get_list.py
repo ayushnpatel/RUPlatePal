@@ -51,46 +51,41 @@ if __name__ == '__main__':
                     break
                 if len(temp.split(" ")) == 1:
                     break
-    #print(food_dict)
-    #print(listOfFood)
 
 # Call an API
-#auth = HTTPBasicAuth('x-api-key', 'fd03d916c4ff4d1885e54662d18c7f32')
 spoonacular_api_key = 'fd03d916c4ff4d1885e54662d18c7f32'
-
-url = 'https://api.spoonacular.com/recipes/findByIngredients?'
+findByIngredients_url = 'https://api.spoonacular.com/recipes/findByIngredients?'
 
 ingredientList = [k for k in listOfFood]
 
-postString = "&ingredients="
+string_ingredient = "&ingredients="
 for count,val in enumerate(ingredientList):
     if count == 0:
-        postString = postString + val
+        string_ingredient = string_ingredient + val
     else:
-        postString = postString+"+"+val
+        string_ingredient = string_ingredient+"+"+val
     
-    postString = postString+","
-postString = postString[:len(postString)-1]
-amountOfRecipes = 10
-postString = postString+"&number=" + str(amountOfRecipes)
-query_params = "apiKey=" + spoonacular_api_key + postString + "&ignorePantry=False"
-query = url  + query_params
+    string_ingredient = string_ingredient+","
 
-spoonacular_response = requests.get(query)
+string_ingredient = string_ingredient[:len(string_ingredient)-1]
+amountOfRecipes = 10
+string_ingredient = string_ingredient+"&number=" + str(amountOfRecipes)
+findByIngredients_params = "apiKey=" + spoonacular_api_key + string_ingredient + "&ignorePantry=False"
+findByIngredients_query = findByIngredients_url  + findByIngredients_params
+
+findByIngredients_response = requests.get(findByIngredients_query)
 
 #tempList = {}
 
-for c,v in enumerate(spoonacular_response.json()):
-    id = spoonacular_response.json()[c]["id"]
-    print(id)
-    url2 = f'https://api.spoonacular.com/recipes/{id}/analyzedInstructions?'
-    query_params2 = "apiKey=" + spoonacular_api_key
-    query2= url2  + query_params2
+for c,v in enumerate(findByIngredients_response.json()):
+    recipe_id = findByIngredients_response.json()[c]["id"]
+    analyzedInstructions_url = f'https://api.spoonacular.com/recipes/{recipe_id}/analyzedInstructions?'
+    analyzedInstructions_params = "apiKey=" + spoonacular_api_key
+    analyzedInstructions_query = analyzedInstructions_url  + analyzedInstructions_params
 
-    spoonacular_response2 = requests.get(query2)
-    print(query2)
-    print(spoonacular_response2.json())
+    analyzedInstructions_response = requests.get(analyzedInstructions_query)
     with open("steps/steps"+str(c)+".json",'w') as u:
-        json.dump(spoonacular_response2.json(), u)
+        json.dump(analyzedInstructions_response.json(), u)
+
 with open("allrecipes.json",'w') as t:
-    json.dump(spoonacular_response.json(), t)
+    json.dump(findByIngredients_response.json(), t)
