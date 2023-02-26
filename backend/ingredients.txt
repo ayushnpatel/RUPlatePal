@@ -1591,7 +1591,7 @@ pie dough
 colby cheese
 bbq sauce
 vanilla instant pudding
-devil s food cake mix
+devil food cake mix
 tartar sauce
 minute rice
 boneless pork loin roast
@@ -1652,7 +1652,7 @@ madeira
 gumdrops
 oat flour
 ginger paste
-cupcakes
+cupcake
 mandarin orange segments
 roquefort cheese
 white miso
@@ -5110,7 +5110,7 @@ long grain and wild rice mix
 bruschetta toppings
 patty shell
 plum vinegar
-goat s milk cheese
+goat milk cheese
 lapsang souchong
 candied chestnuts
 edible gold dust
@@ -6235,7 +6235,7 @@ artificial vanilla flavoring
 hickory seasoning
 broccoli romanesco
 haloumi
-emeril s southwest essence spice blend
+emeril southwest essence spice blend
 lemony whipped cream frosting
 marc
 batter frying mix
