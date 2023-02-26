@@ -36,6 +36,20 @@ if __name__ == '__main__':
     update_dict(data2)
     with open("ingredients.txt") as ingre:
         lines = ingre.readlines()
-        l = list(map(lambda s: s.strip(), lines))
-    listOfFood = []
+        l = set(map(lambda s: s.strip(), lines))
+    listOfFood = {}
+    for k,v in food_dict.items():
+        if k in l:
+            listOfFood[k] = v
+        else:
+            temp = k
+            while True:
+                temp = " ".join(temp.split(" ")[1:])
+                if temp in l:
+                    listOfFood[temp] = v
+                    break
+                if len(temp.split(" ")) == 1:
+                    break
+    print(food_dict)
+    print(listOfFood)
    #print_dict()
