@@ -1,21 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
-function CardComponent() {
+function CardComponent(props) {
+  console.log(props.recipe.usedIngredients);
   return (
     <div className="w-80 my-2 rounded-2xl shadow-md lg:max-w-sm">
       <img
         className="object-cover w-full h-48 rounded-t-2xl"
-        src="https://cdn.pixabay.com/photo/2022/08/18/09/20/houses-7394390__340.jpg"
+        src={props.recipe.image}
         alt="image"
       />
       <div className="p-4">
         <h4 className="text-xl font-semibold tracking-tight text-blue-600">
-          Recipe
+          {props.recipe.title}
         </h4>
-        <p className="mb-2 h-8 text-black leading-normal">ingredients</p>
+        <p className="mb-2 text-black leading-normal">
+          {props.recipe.usedIngredients.map((ingredient) => {
+            console.log(ingredient);
+            return <div>{ingredient.aisle}</div>;
+          })}
+        </p>
         <button className="px-4 py-2 text-sm text-blue-100 bg-blue-500 rounded shadow">
           Read more
         </button>
@@ -26,6 +32,27 @@ function CardComponent() {
 
 function App() {
   const [count, setCount] = useState(0);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("temp.json");
+      const json = await response.json();
+      console.log(json);
+      const objects = json.map((item) => {
+        console.log(item);
+        return {
+          image: item.image,
+          title: item.title,
+          usedIngredients: item.usedIngredients,
+        };
+      });
+
+      setData(objects);
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="App h-screen w-screen flex flex-row justify-between px-20">
@@ -37,8 +64,9 @@ function App() {
         <div className="text-black">See what recipes your food bank.</div>
       </div>
       <div className="my-2 flex flex-col justify-center items-center w-1/2">
-        <CardComponent />
-        <CardComponent />
+        {data.map((item) => (
+          <CardComponent recipe={item} />
+        ))}
       </div>
     </div>
   );
