@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
+import foodTruck from "./assets/foodtruck.gif";
+import clouds from "./assets/clouds.png";
 import "./App.css";
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import { ChevronLeft, ChevronRight } from "react-feather";
@@ -114,21 +116,55 @@ function App() {
   }, []);
 
   return (
-    <div className="App h-screen w-screen flex flex-row justify-between px-20">
-      <div className="flex flex-col justify-center items-center w-1/3">
-        <div className="font-sans shadow-blue-900 drop-shadow-lg animate-text bg-gradient-to-r from-red-400 via-dark-teal to-indigo-400 bg-clip-text text-transparent text-7xl">
-          RUPlatePal
-        </div>
-        <div id="spacer" className="h-16"></div>
-        <div className="text-black">See what recipes your food bank.</div>
-      </div>
+    <Parallax pages={2}>
+      <div className="App w-screen flex flex-col justify-between">
+        {/* <ParallaxLayer offset={0} speed={0.5}>
+          <div className="flex flex-col justify-center items-center w-screen h-screen"> */}
+        <ParallaxLayer offset={0} speed={0.05}>
+          {/* <div className="w-screen h-1/3 bg-red-200 "></div> */}
+          <img src={clouds} className="w-screen h-96 absolute top-0" />
+        </ParallaxLayer>
 
-      <div className="my-2 grid grid-cols-3 grid-rows-3 justify-center items-center w-2/3">
-        {data.slice(0,9).map((item) => (
-          <CardComponent recipe={item} />
-        ))}
+        <ParallaxLayer offset={0.4} speed={0.5}>
+          <div className="font-sans shadow-blue-900 drop-shadow-lg animate-text bg-gradient-to-r from-red-400 via-dark-teal to-indigo-400 bg-clip-text text-transparent text-7xl">
+            RUPlatePal
+          </div>
+          <div id="spacer" className="h-16"></div>
+          <div className="font-sans shadow-blue-900 drop-shadow-lg animate-text bg-gradient-to-r from-red-400 via-dark-teal to-indigo-400 bg-clip-text text-transparent  text-2xl">
+            See what recipes your food bank can make.
+          </div>
+          <div id="spacer" className="h-12"></div>
+          <div className="text-black text-2xl">
+            View recipes below.
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={0.5} speed={2}>
+          <img src={foodTruck} className="absolute w-96 top-0" alt=""></img>
+        </ParallaxLayer>
+
+        <ParallaxLayer offset={0.5} speed={2}>
+          <img
+            src={foodTruck}
+            className="absolute w-96 top-0 right-0"
+            alt=""
+          ></img>
+        </ParallaxLayer>
+
+        {/* </div>
+        </ParallaxLayer> */}
+
+        <ParallaxLayer offset={1} speed={0.5}>
+          <div className="flex flex-col my-2 justify-center items-center w-screen h-screen">
+            <div className="grid grid-cols-3 gap-x-36 grid-rows-3">
+              {data.slice(0, 9).map((item) => (
+                <CardComponent recipe={item} />
+              ))}
+            </div>
+          </div>
+        </ParallaxLayer>
       </div>
-    </div>
+    </Parallax>
   );
 }
 
