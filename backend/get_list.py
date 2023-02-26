@@ -22,9 +22,7 @@ def print_dict():
     for food, waste in food_dict.items():
         print("Food: {food}, Waste: {waste} ounces".format(food = food, waste = waste))
 
-
 if __name__ == '__main__':
-    
     sa = gspread.service_account(filename="credentials.json")
     ss1 = "testsheet"
     ws1 = "Class Data"
@@ -36,5 +34,8 @@ if __name__ == '__main__':
     ws2 = "Sheet1"
     data2 = get_data(ss2, ws2)
     update_dict(data2)
-
-    print_dict()
+    with open("ingredients.txt") as ingre:
+        lines = ingre.readlines()
+        l = list(map(lambda s: s.strip(), lines))
+    listOfFood = []
+   #print_dict()
