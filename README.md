@@ -7,6 +7,8 @@ These season has been particularly rough for the less fortunate. The looming rec
 ## What it does
 Ever wonder what happens to the leftovers at Rutgers? RUPlatePal serves as the bridge between the dining hall and food pantries by optimizing the resources and generating instructions! RUPlatePal is B2B solution that helps those in need by allowing food pantry's to optimally manage their food and leftover food from the dining halls
 
+<img src="frontend/src/assets/recipeList.jpeg">
+
 ## How we built it
 We utilized Python for the backend/API work and used React/typescript/tailwindcss for the frontend. The backend pulls data from the google sheets API which would contain dining hall leftover food information and from there it calls the Spoonacular API to get recipe information based on the ingredients available. After that the frontend is constructed using this information (in JSON) and is displayed on a beautiful website.
 
@@ -21,3 +23,6 @@ We learned how to implement and use SVG and how IDs take priority over classes i
 
 ## What's next for RUPlatePal
 We definitely plan on making the site dynamically update with new information which would ideally be from sensors in the dining hall itself. These sensors would automatically upload whatever food is leftover so the Food Pantry would know what to expect automatically
+
+<img src="frontend/src/assets/aboutUs.jpeg">
+
