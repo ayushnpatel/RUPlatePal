@@ -2,6 +2,8 @@
 ## Inspiration
 These season has been particularly rough for the less fortunate. The looming recession and recent economic downturn has led to many needing to rely on food pantry's for hot meals and food security. We wanted to help these people in need by creating a software application that would help maximize the amount of meals for these individuals
 
+<img src="frontend/src/assets/splashPage.jpeg">
+
 ## What it does
 Ever wonder what happens to the leftovers at Rutgers? RUPlatePal serves as the bridge between the dining hall and food pantries by optimizing the resources and generating instructions! RUPlatePal is B2B solution that helps those in need by allowing food pantry's to optimally manage their food and leftover food from the dining halls
 
