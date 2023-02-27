@@ -2,17 +2,17 @@
 ## Inspiration
 These season has been particularly rough for the less fortunate. The looming recession and recent economic downturn has led to many needing to rely on food pantry's for hot meals and food security. We wanted to help these people in need by creating a software application that would help maximize the amount of meals for these individuals
 
+## What it does
+Ever wonder what happens to the leftovers at Rutgers? RUPlatePal serves as the bridge between the dining hall and food pantries by optimizing the resources and generating instructions! RUPlatePal is B2B solution that helps those in need by allowing food pantry's to optimally manage their food and leftover food from the dining halls
+
 ## Demo of RUPlatePal! (Click the Image lol)
 
 [<img src="frontend/src/assets/splashPage.jpeg">](https://youtu.be/oC8OWPbsFts "Video Title")
 
-## What it does
-Ever wonder what happens to the leftovers at Rutgers? RUPlatePal serves as the bridge between the dining hall and food pantries by optimizing the resources and generating instructions! RUPlatePal is B2B solution that helps those in need by allowing food pantry's to optimally manage their food and leftover food from the dining halls
-
-<img src="frontend/src/assets/recipeList.jpeg">
-
 ## How we built it
 We utilized Python for the backend/API work and used React/typescript/tailwindcss for the frontend. The backend pulls data from the google sheets API which would contain dining hall leftover food information and from there it calls the Spoonacular API to get recipe information based on the ingredients available. After that the frontend is constructed using this information (in JSON) and is displayed on a beautiful website.
+
+<img src="frontend/src/assets/recipeList.jpeg">
 
 ## Challenges we ran into
 Integrating Google Sheet API in the beginning took us quite a bit of time as well as getting the parallax/color scheme to work. We were also having slight issues with version control but we solved those issues quite quickly
